@@ -8,21 +8,22 @@ class IndexController extends BaseController {
 
 	public function index(){
 
-		$info=$this->get_info($account,$password);
+    if(!BaseController::checkUser($this->user_id)){
+      redirect(U('Home/Login/index'));
+    }
 
-		$this->assign('gpa',$info);
-		print_r($info);
+		//$info=$this->get_info($account,$password);
+    $a=M('user');
+    $map=$this->user_id;
+    $user=$a->where($map)->find();
+    $account=$user['account'];
+    $password=$user['password'];
+    $data=$this->get_info($account,$password);
+    //print_r($data);exit();
+		$this->assign('data',$data);
+		//print_r($info);
 		$this->display();
 	}
-
-
-
-
-
-
-
-
-
 
 
 

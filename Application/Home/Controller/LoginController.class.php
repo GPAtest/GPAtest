@@ -3,21 +3,28 @@ namespace Home\Controller;
 use Think\Controller;
 
 
-class AccountController extends Controller{
+class LoginController extends Controller{
+
+
+
+	public function logout(){
+		session(null);
+		$this->success('退出成功',U('Home/Index/index'));
+	}
 
 
 	public function index(){
 		if(IS_POST){
-			dump($_POST['weixin_key']);
+			//dump($_POST['weixin_key']);
 			$a=M('user');
 			$data_user['weixin_key']=$_POST['weixin_key'];
 			$data_user['account']=$_POST['account'];
 			$data_user['password']=$_POST['password'];
 			$user=$a->add($data_user);
-			dump($user['user_id']);exit();die();
+			//dump($user['user_id']);exit();die();
 
 			if($user){
-				session('user_id',$user['user_id']);
+				session('user_id',$user);
 				$data['status']=0;
 				$this->ajaxReturn($data,'JSON');
 			}else{

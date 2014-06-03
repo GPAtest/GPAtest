@@ -35,7 +35,7 @@
        <div class="container">   
           <ul class="nav nav-pills">
             <li class="active"><a href="/GPAtest/index.php/Home/Index/index">绩点查询</a></li>
-            <li><a href="/GPAtest/index.php/Home/Account/logout">退出</a></li>
+            <li><a href="/GPAtest/index.php/Home/Login/logout">退出</a></li>
           </ul>
        </div>
     </div>
@@ -112,7 +112,7 @@ $(document).ready(function(){
         $("#button").text('处理中..');
 
 
-        $.post("/GPAtest/index.php/Home/Account/index", {account:account,password:password,weixin_key:weixin_key},function(data){
+        $.post("/GPAtest/index.php/Home/Login/index", {account:account,password:password,weixin_key:weixin_key},function(data){
 
           if(data.status==0){
 
@@ -180,7 +180,7 @@ $(document).ready(function(){
 
 
 
-      $.post("/GPAtest/index.php/Home/Account/index", {account:account,password:password,weixin_key:weixin_key},function(data){
+      $.post("/GPAtest/index.php/Home/Login/index", {account:account,password:password,weixin_key:weixin_key},function(data){
 
         if(data.status==0){
 

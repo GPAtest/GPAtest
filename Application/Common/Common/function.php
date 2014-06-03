@@ -7,7 +7,7 @@
 		if(empty($user['user_id'])){
 			return false;
 		}else{
-			return $user['user_id'];
+			return $user;
 		}
 	}
 
@@ -21,10 +21,28 @@
 	}
 
 
-	
 
 
 
+	function not_login($from_url=''){
+		$not_login_with_weixin_key_url='http://localhost/GPAtest/index.php/Home/Index/index/weixin_key/'.time();
+	}
+
+
+
+	function login($weixin_key){
+
+		$a=is_user($weixin_key);
+
+		if($a){
+			$user_id=$a['user_id'];
+			session('user_id',$user_id);
+
+		}else{
+			redirect(U('/Home/Login/index?weixin_key='.$weixin_key));
+		}
+
+	}
 
 
 ?>
