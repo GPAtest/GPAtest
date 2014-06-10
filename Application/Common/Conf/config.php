@@ -11,8 +11,8 @@ return array(
 	'DB_PWD'=>'',
 	'DB_PREFIX'=>'gpa_',
 	//'DEFAULT_THEME'=>'Simple',
-	'TMPL_L_DELIM'=>'@#',
-	'TMPL_R_DELIM'=>'#@',
+	//'TMPL_L_DELIM'=>'@#',
+	//'TMPL_R_DELIM'=>'#@',
 
 );
 ?>

@@ -25,32 +25,43 @@ class LoginController extends Controller{
 
 			if($user){
 				session('user_id',$user);
-				$data['status']=0;
+				$data['status']=1;
 				$this->ajaxReturn($data,'JSON');
 			}else{
 				$data['status']=0;
 				$this->ajaxReturn($data,'JSON');
-			}
-		}elseif(empty($_GET['weixin_key'])){
-			echo '未从微信进入！';
-		}elseif(is_user($_GET['weixin_key'])){
-			//echo '您的账号号已登陆,接下来将跳转至您的成绩单';
-			redirect(U('/Home/Index/index'));
-		}else{
-    //  dump($_SESSION);
-		//	dump($_GET);exit;
-		
-		$this->display();
-	
+			}	
 		}
+	$this->display();
 	}
 
-	function test(){
-		$this->display();
+
+	/*----------修改学号和密码----------*/
+	public function change(){
+		if(IS_POST){
+			$a=M('user');
+			$map['user_id']=$this->user_id;
+			$updata['weixin_key']=$_POST['weixin_key'];
+			$updata['account']=$_POST['account'];
+			$updata['password']=$_POST['password'];
+			$user=$a->where($map)->save($updata);
+			if($user){
+				$data['status']=1;
+				$this->ajaxReturn($data,'JSON');
+			}else{
+				$data['status']=0;
+				$this->ajaxReturn($data,'JSON');
+			}	
+		}
+	$this->display();
 	}
 
 
 }
+
+
+
+
 
 
 

@@ -1,6 +1,4 @@
 <?php if (!defined('THINK_PATH')) exit();?>
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -50,7 +48,7 @@
 
   <h4 class="form-signin-heading">请输入学号和密码:</h4>
 
-  <input type="hidden" id="weixin_key" value="<?php echo ($_GET['weixin_key']); ?>" />
+  <input type="hidden" id="weixin_key" value="@#$_GET['weixin_key']#@" />
 
   <input type="text" account="account" id="account" class="form-control" placeholder="学号:" required autofocus />
   <div id="error_account" class="text-danger"> ！请输入学号</div><br />

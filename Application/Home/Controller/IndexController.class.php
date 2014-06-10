@@ -6,26 +6,22 @@ use Think\Controller;
 class IndexController extends BaseController {
 
 
-	public function index(){
+  public function index(){
 
-    if(!BaseController::checkUser($this->user_id)){
-      redirect(U('Home/Login/index'));
-    }
-
-		//$info=$this->get_info($account,$password);
     $a=M('user');
-    $map=$this->user_id;
+    $map['user_id']=$this->user_id;
     $user=$a->where($map)->find();
     $account=$user['account'];
     $password=$user['password'];
     $data=$this->get_info($account,$password);
-    //print_r($data);exit();
-		$this->assign('data',$data);
-		//print_r($info);
-		$this->display();
-	}
+    $this->assign('data',$data);
+    $this->assign('semester',$data['Semester']);
+    $this->assign('course',$data['Semester'][0]['Course']);
+    $this->assign('failging',$data['FailScore']['FailingScore']);
 
 
+    $this->display();
+  }
 
 
 
@@ -60,7 +56,7 @@ class IndexController extends BaseController {
       );
     $score_data_return = $this->curl_gpa($score_url, $cookie_file, $score_curl_post, "readcookie");
     //print_r($score_data_return);exit();
-
+     $score_data_return=iconv("GBK", 'UTF-8',$score_data_return );
       
     /*-----------------------获取成绩信息---------------------*/
     $data = preg_replace('/\s/','', $score_data_return); //替换空格、回车、换行
@@ -153,7 +149,7 @@ class IndexController extends BaseController {
       );
     $fail_score_data_return = $this->curl_gpa($fail_score_url, $cookie_file, $fail_score_curl_post, "readcookie");
       //print_r($fail_score_data_return);exit();
-      
+    $fail_score_data_return=iconv('gbk', 'UTF-8',$fail_score_data_return);  
     /*-----------------------获取成绩信息---------------------*/
     $fail_data = preg_replace('/\s/','', $fail_score_data_return); //替换空格、回车、换行
       //print_r($fail_data);exit();
@@ -265,7 +261,8 @@ class IndexController extends BaseController {
         header('content-type:text/html;charset=utf-8;');
         echo "<script language=\"JavaScript\">";
         echo "alert(\"$str\");";
-        echo "location.href='index.html';";
+        echo "windows.location.href='localhsot/GPAtest/index.php/Home/login/change';";
+        echo "<meta http-equiv='Refresh' content='0;URL=localhsot/GPAtest/index.php/Home/Login/change'>"; 
         echo "</script>";
     }
 

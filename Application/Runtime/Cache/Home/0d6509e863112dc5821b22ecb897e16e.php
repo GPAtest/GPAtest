@@ -28,17 +28,23 @@
 
 
 
-<?php foreach ($data['Semester'] as $key => $value) {?>
-<div class="table-responsive">
+<?php
+ foreach ($data['Semester'] as $key => $value) {?>
+
+<div class="container"> 
+  <div class="row">
+    <div class="well well-lg">
+      <div calss="col-md-offset-2 col-md-8">
+
   <table class="table">
   <tr>
-    <th>CourseName</th><th>Score</th><th>Credit</th><th>Properties</th>
+    <th>课程名称</th><th>成绩</th><th>绩点</th><th>课程属性</th>
   </tr>
 
-  <p>Semester:<?php echo $value['SemesterName']; ?></p>
-  <p>Semester All Credits:<?php echo $value['SemesterAllCredit']; ?></p>
-  <p>Average Score:<?php echo $value['sa_info']; ?></p>
-  <p>GradePoint:<?php echo $value['gpa_info']; ?></p>
+  <p><font color="blue"><b>学期:</b></font>&nbsp;<?php echo $value['SemesterName']; ?></p>
+  <p><font color="blue"><b>总学分:</b></font>&nbsp;<?php echo $value['SemesterAllCredit']; ?></p>
+  <p><font color="blue"><b>平均成绩:</b></font>&nbsp;<?php echo $value['sa_info']; ?></p>
+  <p><font color="blue"><b>平均学分:</b></font>&nbsp;<?php echo $value['gpa_info']; ?></p>
 
   <?php foreach ($value['Course'] as $key => $info){ ?>
 
@@ -55,18 +61,26 @@
   <?php } ?>
 
   </table>
+  </div>
+  </div>
+  </div>
+  </div>
 </div>
 
 <?php } ?>  
 
+<?php }if(isset($data['FailScore']['FailingScore'])){ ?>
 
-<?php }elseif(isset($data['FailScore']['FailingScore'])){ ?>
-<p>当前不及格：</p>
+<div class="container"> 
+  <div class="row">
+    <div class="well well-lg">
+      <div calss="col-md-offset-2 col-md-8">
 
-<div class="table-responsive">
+
   <table class="table">
+  <p><font color="red">当前不及格：</font></p>
   <tr>
-    <th>CourseName</th><th>Score</th><th>Properties</th><th>Credit</th><th>ExamTime</th>
+    <th>课程名称</th><th>成绩</th><th>课程属性</th><th>学分</th><th>考试时间</th>
   </tr>
 
 
@@ -87,15 +101,24 @@
   <?php } ?>
 
   </table>
+  </div>
+  </div>
+  </div>
+  </div>
 </div>
 
-<?php }elseif(isset($data['FailScore']['FailedScore'])){ ?>
-<p>曾不及格：</p>
+<?php }if(isset($data['FailScore']['FailedScore'])){ ?>
 
-<div class="table-responsive">
+<div class="container"> 
+  <div class="row">
+    <div class="well well-lg">
+      <div calss="col-md-offset-2 col-md-8">
+
+
   <table class="table">
+  <p><font color="red">曾不及格：</font></p>
   <tr>
-    <th>CourseName</th><th>Score</th><th>Properties</th><th>Credit</th><th>ExamTime</th>
+    <th>课程名称</th><th>成绩</th><th>课程属性</th><th>学分</th><th>考试时间</th>
   </tr>
 
   <?php foreach ($data['FailScore']['FailedScore'] as $key => $info){ ?>
@@ -115,6 +138,10 @@
   <?php } ?>
 
   </table>
+  </div>
+  </div>
+  </div>
+  </div>
 </div>
 <?php } ?> 
 
