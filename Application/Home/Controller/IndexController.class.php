@@ -261,8 +261,7 @@ class IndexController extends BaseController {
         header('content-type:text/html;charset=utf-8;');
         echo "<script language=\"JavaScript\">";
         echo "alert(\"$str\");";
-        echo "windows.location.href='localhsot/GPAtest/index.php/Home/login/change';";
-        echo "<meta http-equiv='Refresh' content='0;URL=localhsot/GPAtest/index.php/Home/Login/change'>"; 
+        echo "location.href=U('Home/Login/change');";
         echo "</script>";
     }
 
